@@ -20,6 +20,7 @@ const Post = require("./src/models/Post");
 const FriendRequest = require("./src/models/FriendRequest");
 const Room = require("./src/models/Room");
 const Message = require("./src/models/Message");
+const Course = require("./src/models/course");
 
 // Routes
 app.use("/api/auth", require("./src/routes/auth"));
@@ -27,14 +28,26 @@ app.use("/api/posts", require("./src/routes/posts"));
 app.use("/api/users", require("./src/routes/users"));
 app.use("/api/friends", require("./src/routes/friends"));
 app.use("/api/rooms", require("./src/routes/rooms"));
+app.use("/api/courses", require("./src/routes/courses"));
 
-// Socket.IO Chat
-io.on("connection", (socket) => {
-  socket.on("joinRoom", (roomId) => socket.join(roomId));
-  socket.on("chatMessage", ({ roomId, message, sender }) => {
-    io.to(roomId).emit("chatMessage", { message, sender });
-  });
-});
+// // Socket.IO Chat
+// io.on("connection", (socket) => {
+//   console.log(`User connected: ${socket.id}`);
+
+//   socket.on("joinRoom", (roomId) => {
+//     socket.join(roomId);
+//     console.log(`User ${socket.id} joined room ${roomId}`);
+//   });
+
+//   socket.on("chatMessage", ({ roomId, message, sender }) => {
+//     io.to(roomId).emit("chatMessage", { message, sender });
+//   });
+
+//   socket.on("disconnect", () => {
+//     console.log(`User disconnected: ${socket.id}`);
+//   });
+// });
+
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Server running on ${PORT}`));
