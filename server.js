@@ -30,24 +30,5 @@ app.use("/api/friends", require("./src/routes/friends"));
 app.use("/api/rooms", require("./src/routes/rooms"));
 app.use("/api/courses", require("./src/routes/courses"));
 
-// // Socket.IO Chat
-// io.on("connection", (socket) => {
-//   console.log(`User connected: ${socket.id}`);
-
-//   socket.on("joinRoom", (roomId) => {
-//     socket.join(roomId);
-//     console.log(`User ${socket.id} joined room ${roomId}`);
-//   });
-
-//   socket.on("chatMessage", ({ roomId, message, sender }) => {
-//     io.to(roomId).emit("chatMessage", { message, sender });
-//   });
-
-//   socket.on("disconnect", () => {
-//     console.log(`User disconnected: ${socket.id}`);
-//   });
-// });
-
-
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Server running on ${PORT}`));
